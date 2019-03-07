@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import visitorReducer from "./visitor.reducer";
-const rootReducer = combineReducers({
+const visitorApp = combineReducers({
   visitors: visitorReducer
 });
 
-export default rootReducer;
+export default visitorApp;

@@ -1,4 +1,4 @@
-import { ADD_VISITOR, OUT_VISITOR } from "../actions/visitor.action";
+import { ADD_VISITOR, OUT_VISITOR, SET_VISITORS } from "../actions/visitor.action";
 
 function visitorReducer(state = [], action) {
   switch (action.type) {
@@ -6,7 +6,8 @@ function visitorReducer(state = [], action) {
       return [...state, action.payload];
     case OUT_VISITOR:
       return state.filter(visitor => visitor.id !== action.payload.id);
-
+    case SET_VISITORS:
+       return action.visitors;
     default:
       return state;
   }

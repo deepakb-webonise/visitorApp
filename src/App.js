@@ -3,7 +3,7 @@ import "./App.css";
 import VisitorForm from "./components/visitorForm";
 import VisitorList from "./components/visitorList";
 import { connect } from "react-redux";
-import { addVisitor, outVisitor } from "./store/actions/visitor.action";
+import { outVisitor, getVisitors, saveVisitor } from "./store/actions/visitor.action";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +35,9 @@ class App extends Component {
   onOutVisitor = id => {
     this.props.outVisitor(id);
   };
+  componentDidMount(){
+    this.props.loadVisitors();
+  }
   render() {
     const { name, intime } = this.state;
     return (
@@ -57,10 +60,13 @@ class App extends Component {
 const mapStateToProps = state => ({
   visitors: state.visitors
 });
+
 const mapDispatchToProps = dispatch => ({
-  addVisitor: visitor => dispatch(addVisitor(visitor)),
-  outVisitor: id => dispatch(outVisitor(id))
+  addVisitor: visitor => dispatch(saveVisitor(visitor)),
+  outVisitor: id => dispatch(outVisitor(id)),
+  loadVisitors: () => dispatch(getVisitors())
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
